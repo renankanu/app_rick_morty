@@ -1,19 +1,26 @@
 import 'package:app_rick_morty/app/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:splashscreen/splashscreen.dart';
 
-class IntroScreen extends StatelessWidget {
+class IntroScreen extends StatefulWidget {
+  @override
+  _IntroScreenState createState() => _IntroScreenState();
+}
+
+class _IntroScreenState extends State<IntroScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 5), () {
+      Navigator.pushReplacementNamed(context, '/home');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SplashScreen(
-      seconds: 5,
-      gradientBackground: LinearGradient(
-        begin: Alignment.topRight,
-        end: Alignment.bottomLeft,
-        colors: [Color(0xffED213A), Color(0xff93291E)],
+    return Scaffold(
+      body: Center(
+        child: Text('Splash Screen'),
       ),
-      navigateAfterSeconds: HomePage(),
-      loaderColor: Colors.transparent,
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:app_rick_morty/app/pages/home/home_module.dart';
-import 'package:app_rick_morty/app/pages/home/home_page.dart';
 import 'package:app_rick_morty/app/pages/intro/intro_screen.dart';
 
 import 'app_controller.dart';
@@ -15,8 +14,8 @@ class AppModule extends MainModule {
 
   @override
   List<ModularRouter> get routers => [
-        // ModularRouter(Modular.initialRoute, child: (_, args) => IntroScreen()),
-        ModularRouter('/', module: HomeModule()),
+        ModularRouter(Modular.initialRoute, child: (_, args) => IntroScreen()),
+        ModularRouter('/home', module: HomeModule()),
       ];
 
   @override
