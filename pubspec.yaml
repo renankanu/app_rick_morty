@@ -46,6 +46,7 @@ dev_dependencies:
   modular_codegen: ^2.0.0+1
   mobx_codegen: ^1.1.1+1
   build_runner: ^1.10.1
+  json_serializable: ^3.5.0
   flutter_test:
     sdk: flutter
 
