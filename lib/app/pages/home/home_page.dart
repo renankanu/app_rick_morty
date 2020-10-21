@@ -1,3 +1,4 @@
+import 'package:app_rick_morty/app/pages/home/widgets/image_character.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -34,17 +35,9 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                           shadowColor: Colors.red,
                           child: Row(
                             children: [
-                              Container(
-                                width: 80,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(12),
-                                    topRight: Radius.circular(12),
-                                  ),
-                                  child: Image.network(controller
+                              ImageCharacter(
+                                  image: controller
                                       .characterModel.results[index].image),
-                                ),
-                              ),
                               Container(
                                 child: Text(
                                   controller.characterModel.results[index].name,
