@@ -1,5 +1,7 @@
-import 'package:mobx/mobx.dart';
+import 'package:app_rick_morty/app/model/character_model.dart';
+import 'package:app_rick_morty/app/repositories/characters_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mobx/mobx.dart';
 
 part 'home_controller.g.dart';
 
@@ -7,11 +9,22 @@ part 'home_controller.g.dart';
 class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
+  final CharacterRepository characterRepository;
+
+  _HomeControllerBase(this.characterRepository) {
+    getCharacters();
+  }
+
   @observable
-  int value = 0;
+  CharacterModel characterModel;
+
+  @observable
+  bool isLoading = false;
 
   @action
-  void increment() {
-    value++;
+  getCharacters() async {
+    isLoading = true;
+    characterModel = await characterRepository.getCharacters();
+    isLoading = false;
   }
 }

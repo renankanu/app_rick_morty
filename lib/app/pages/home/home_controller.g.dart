@@ -7,7 +7,7 @@ part of 'home_controller.dart';
 // **************************************************************************
 
 final $HomeController = BindInject(
-  (i) => HomeController(),
+  (i) => HomeController(i<CharacterRepository>()),
   singleton: true,
   lazy: true,
 );
@@ -19,39 +19,49 @@ final $HomeController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on _HomeControllerBase, Store {
-  final _$valueAtom = Atom(name: '_HomeControllerBase.value');
+  final _$characterModelAtom = Atom(name: '_HomeControllerBase.characterModel');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  CharacterModel get characterModel {
+    _$characterModelAtom.reportRead();
+    return super.characterModel;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set characterModel(CharacterModel value) {
+    _$characterModelAtom.reportWrite(value, super.characterModel, () {
+      super.characterModel = value;
     });
   }
 
-  final _$_HomeControllerBaseActionController =
-      ActionController(name: '_HomeControllerBase');
+  final _$isLoadingAtom = Atom(name: '_HomeControllerBase.isLoading');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
-        name: '_HomeControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
-    }
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
+  final _$getCharactersAsyncAction =
+      AsyncAction('_HomeControllerBase.getCharacters');
+
+  @override
+  Future getCharacters() {
+    return _$getCharactersAsyncAction.run(() => super.getCharacters());
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+characterModel: ${characterModel},
+isLoading: ${isLoading}
     ''';
   }
 }
