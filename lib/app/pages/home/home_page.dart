@@ -38,10 +38,19 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                               ImageCharacter(
                                   image: controller
                                       .characterModel.results[index].image),
-                              Container(
-                                child: Text(
-                                  controller.characterModel.results[index].name,
-                                ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(controller
+                                      .characterModel.results[index].species),
+                                  Text(
+                                    controller
+                                        .characterModel.results[index].name,
+                                  ),
+                                ],
                               ),
                             ],
                           ),
