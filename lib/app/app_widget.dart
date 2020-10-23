@@ -9,7 +9,7 @@ class AppWidget extends StatelessWidget {
       navigatorKey: Modular.navigatorKey,
       title: 'Rick e Morty',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
       initialRoute: '/',
       onGenerateRoute: Modular.generateRoute,
