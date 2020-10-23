@@ -25,37 +25,46 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           SizedBox(
             height: statusBarHeight,
           ),
+          Text('Personagens'),
           Expanded(
             child: Observer(builder: (_) {
               return controller.isLoading == false
-                  ? ListView.builder(
-                      itemCount: controller.characterModel.results.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          shadowColor: Colors.red,
-                          child: Row(
-                            children: [
-                              ImageCharacter(
-                                  image: controller
-                                      .characterModel.results[index].image),
-                              SizedBox(
-                                width: 20,
+                  ? MediaQuery.removePadding(
+                      context: context,
+                      removeTop: true,
+                      child: ListView.builder(
+                          itemCount: controller.characterModel.results.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
+                              child: Card(
+                                child: Row(
+                                  children: [
+                                    ImageCharacter(
+                                        image: controller.characterModel
+                                            .results[index].image),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(controller.characterModel
+                                            .results[index].species),
+                                        Text(
+                                          controller.characterModel
+                                              .results[index].name,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(controller
-                                      .characterModel.results[index].species),
-                                  Text(
-                                    controller
-                                        .characterModel.results[index].name,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        );
-                      })
+                            );
+                          }),
+                    )
                   : Center(
                       child: CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
