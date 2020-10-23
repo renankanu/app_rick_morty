@@ -25,7 +25,15 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           SizedBox(
             height: statusBarHeight,
           ),
-          Text('Personagens'),
+          Text(
+            'Personagens',
+            style: TextStyle(
+              fontSize: 22,
+            ),
+          ),
+          SizedBox(
+            height: 16,
+          ),
           Expanded(
             child: Observer(builder: (_) {
               return controller.isLoading == false
