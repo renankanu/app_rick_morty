@@ -12,9 +12,9 @@ class CharacterRepository extends Disposable {
 
   CharacterRepository(this.client);
 
-  Future<CharacterModel> getCharacters() async {
+  Future<CharacterModel> getCharacters(int page) async {
     try {
-      final response = await client.get('$baseUrl/character');
+      final response = await client.get('$baseUrl/character?page=$page');
       return CharacterModel.fromJson(response.data);
     } on DioError catch (e) {
       throw Exception(e);

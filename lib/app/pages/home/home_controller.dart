@@ -12,7 +12,7 @@ abstract class _HomeControllerBase with Store {
   final CharacterRepository characterRepository;
 
   _HomeControllerBase(this.characterRepository) {
-    getCharacters();
+    getCharacters(1);
   }
 
   @observable
@@ -22,9 +22,9 @@ abstract class _HomeControllerBase with Store {
   bool isLoading = false;
 
   @action
-  getCharacters() async {
+  getCharacters(int page) async {
     isLoading = true;
-    characterModel = await characterRepository.getCharacters();
+    characterModel = await characterRepository.getCharacters(page);
     isLoading = false;
   }
 }

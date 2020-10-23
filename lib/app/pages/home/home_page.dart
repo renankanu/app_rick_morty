@@ -14,7 +14,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends ModularState<HomePage, HomeController> {
-  //use 'controller' variable to access controller
+  int page;
+  bool initial = true;
+  ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    page = 2;
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        controller.getCharacters(page);
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +55,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                       context: context,
                       removeTop: true,
                       child: ListView.builder(
+                          controller: _scrollController,
                           itemCount: controller.characterModel.results.length,
                           itemBuilder: (context, index) {
                             return Padding(

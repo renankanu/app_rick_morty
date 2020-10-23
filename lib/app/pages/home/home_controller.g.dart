@@ -53,8 +53,8 @@ mixin _$HomeController on _HomeControllerBase, Store {
       AsyncAction('_HomeControllerBase.getCharacters');
 
   @override
-  Future getCharacters() {
-    return _$getCharactersAsyncAction.run(() => super.getCharacters());
+  Future getCharacters(int page) {
+    return _$getCharactersAsyncAction.run(() => super.getCharacters(page));
   }
 
   @override
