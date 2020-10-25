@@ -16,7 +16,7 @@ abstract class _HomeControllerBase with Store {
   }
 
   @observable
-  List<CharacterModel> characterModel;
+  List<CharacterModel> characterModel = [];
 
   @observable
   bool isLoading = false;
@@ -24,7 +24,10 @@ abstract class _HomeControllerBase with Store {
   @action
   getCharacters(int page) async {
     isLoading = true;
-    characterModel = await characterRepository.getCharacters(page);
+    characterModel = [
+      ...characterModel,
+      ...await characterRepository.getCharacters(page)
+    ];
     isLoading = false;
   }
 }
