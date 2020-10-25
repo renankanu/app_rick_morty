@@ -8,40 +8,6 @@ part of 'character_model.dart';
 
 CharacterModel _$CharacterModelFromJson(Map<String, dynamic> json) {
   return CharacterModel(
-    info: json['info'] == null
-        ? null
-        : InfoModel.fromJson(json['info'] as Map<String, dynamic>),
-    results: (json['results'] as List)
-        ?.map((e) =>
-            e == null ? null : ResultsModel.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-  );
-}
-
-Map<String, dynamic> _$CharacterModelToJson(CharacterModel instance) =>
-    <String, dynamic>{
-      'info': instance.info,
-      'results': instance.results,
-    };
-
-InfoModel _$InfoModelFromJson(Map<String, dynamic> json) {
-  return InfoModel(
-    count: json['count'] as int,
-    pages: json['pages'] as int,
-    next: json['next'] as String,
-    prev: json['prev'] as String,
-  );
-}
-
-Map<String, dynamic> _$InfoModelToJson(InfoModel instance) => <String, dynamic>{
-      'count': instance.count,
-      'pages': instance.pages,
-      'next': instance.next,
-      'prev': instance.prev,
-    };
-
-ResultsModel _$ResultsModelFromJson(Map<String, dynamic> json) {
-  return ResultsModel(
     id: json['id'] as int,
     name: json['name'] as String,
     status: json['status'] as String,
@@ -61,7 +27,7 @@ ResultsModel _$ResultsModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ResultsModelToJson(ResultsModel instance) =>
+Map<String, dynamic> _$CharacterModelToJson(CharacterModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

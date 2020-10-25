@@ -22,13 +22,13 @@ mixin _$HomeController on _HomeControllerBase, Store {
   final _$characterModelAtom = Atom(name: '_HomeControllerBase.characterModel');
 
   @override
-  CharacterModel get characterModel {
+  List<CharacterModel> get characterModel {
     _$characterModelAtom.reportRead();
     return super.characterModel;
   }
 
   @override
-  set characterModel(CharacterModel value) {
+  set characterModel(List<CharacterModel> value) {
     _$characterModelAtom.reportWrite(value, super.characterModel, () {
       super.characterModel = value;
     });

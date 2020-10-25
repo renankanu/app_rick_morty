@@ -16,7 +16,7 @@ abstract class _HomeControllerBase with Store {
   }
 
   @observable
-  CharacterModel characterModel;
+  List<CharacterModel> characterModel;
 
   @observable
   bool isLoading = false;

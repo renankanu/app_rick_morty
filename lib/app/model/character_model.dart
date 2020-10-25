@@ -4,32 +4,6 @@ part 'character_model.g.dart';
 
 @JsonSerializable()
 class CharacterModel {
-  InfoModel info;
-  List<ResultsModel> results;
-
-  CharacterModel({this.info, this.results});
-
-  factory CharacterModel.fromJson(Map<String, dynamic> json) =>
-      _$CharacterModelFromJson(json);
-  Map<String, dynamic> toJson() => _$CharacterModelToJson(this);
-}
-
-@JsonSerializable()
-class InfoModel {
-  int count;
-  int pages;
-  String next;
-  String prev;
-
-  InfoModel({this.count, this.pages, this.next, this.prev});
-
-  factory InfoModel.fromJson(Map<String, dynamic> json) =>
-      _$InfoModelFromJson(json);
-  Map<String, dynamic> toJson() => _$InfoModelToJson(this);
-}
-
-@JsonSerializable()
-class ResultsModel {
   int id;
   String name;
   String status;
@@ -43,7 +17,7 @@ class ResultsModel {
   String url;
   String created;
 
-  ResultsModel(
+  CharacterModel(
       {this.id,
       this.name,
       this.status,
@@ -57,9 +31,9 @@ class ResultsModel {
       this.url,
       this.created});
 
-  factory ResultsModel.fromJson(Map<String, dynamic> json) =>
-      _$ResultsModelFromJson(json);
-  Map<String, dynamic> toJson() => _$ResultsModelToJson(this);
+  factory CharacterModel.fromJson(Map<String, dynamic> json) =>
+      _$CharacterModelFromJson(json);
+  Map<String, dynamic> toJson() => _$CharacterModelToJson(this);
 }
 
 @JsonSerializable()

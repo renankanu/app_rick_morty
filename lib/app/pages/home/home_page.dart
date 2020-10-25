@@ -56,7 +56,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                       removeTop: true,
                       child: ListView.builder(
                           controller: _scrollController,
-                          itemCount: controller.characterModel.results.length,
+                          itemCount: controller.characterModel.length,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding:
@@ -65,8 +65,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                 child: Row(
                                   children: [
                                     ImageCharacter(
-                                        image: controller.characterModel
-                                            .results[index].image),
+                                        image: controller
+                                            .characterModel[index].image),
                                     SizedBox(
                                       width: 20,
                                     ),
@@ -74,11 +74,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(controller.characterModel
-                                            .results[index].species),
+                                        Text(controller
+                                            .characterModel[index].species),
                                         Text(
-                                          controller.characterModel
-                                              .results[index].name,
+                                          controller.characterModel[index].name,
                                         ),
                                       ],
                                     ),

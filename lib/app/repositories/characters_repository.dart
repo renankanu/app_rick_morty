@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app_rick_morty/app/model/character_model.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/native_imp.dart';
@@ -12,10 +14,16 @@ class CharacterRepository extends Disposable {
 
   CharacterRepository(this.client);
 
-  Future<CharacterModel> getCharacters(int page) async {
+  Future<List<CharacterModel>> getCharacters(int page) async {
     try {
       final response = await client.get('$baseUrl/character?page=$page');
-      return CharacterModel.fromJson(response.data);
+      List<CharacterModel> characterModels;
+      Iterable l = json.decode(response.data['results']);
+      print(l);
+      characterModels = (json.decode(response.data['results']) as List)
+          .map((i) => CharacterModel.fromJson(i))
+          .toList();
+      return characterModels;
     } on DioError catch (e) {
       throw Exception(e);
     }
