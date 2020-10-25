@@ -34,34 +34,59 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
-  final _$isLoadingAtom = Atom(name: '_HomeControllerBase.isLoading');
+  final _$pageAtom = Atom(name: '_HomeControllerBase.page');
 
   @override
-  bool get isLoading {
-    _$isLoadingAtom.reportRead();
-    return super.isLoading;
+  int get page {
+    _$pageAtom.reportRead();
+    return super.page;
   }
 
   @override
-  set isLoading(bool value) {
-    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
-      super.isLoading = value;
+  set page(int value) {
+    _$pageAtom.reportWrite(value, super.page, () {
+      super.page = value;
     });
   }
 
-  final _$getCharactersAsyncAction =
-      AsyncAction('_HomeControllerBase.getCharacters');
+  final _$hasMoreAtom = Atom(name: '_HomeControllerBase.hasMore');
 
   @override
-  Future getCharacters(int page) {
-    return _$getCharactersAsyncAction.run(() => super.getCharacters(page));
+  bool get hasMore {
+    _$hasMoreAtom.reportRead();
+    return super.hasMore;
+  }
+
+  @override
+  set hasMore(bool value) {
+    _$hasMoreAtom.reportWrite(value, super.hasMore, () {
+      super.hasMore = value;
+    });
+  }
+
+  final _$loadMoreCharactersAsyncAction =
+      AsyncAction('_HomeControllerBase.loadMoreCharacters');
+
+  @override
+  Future loadMoreCharacters() {
+    return _$loadMoreCharactersAsyncAction
+        .run(() => super.loadMoreCharacters());
+  }
+
+  final _$reloadCharactersAsyncAction =
+      AsyncAction('_HomeControllerBase.reloadCharacters');
+
+  @override
+  Future reloadCharacters() {
+    return _$reloadCharactersAsyncAction.run(() => super.reloadCharacters());
   }
 
   @override
   String toString() {
     return '''
 characterModel: ${characterModel},
-isLoading: ${isLoading}
+page: ${page},
+hasMore: ${hasMore}
     ''';
   }
 }
