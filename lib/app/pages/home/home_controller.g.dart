@@ -64,6 +64,21 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  final _$isLoadingAtom = Atom(name: '_HomeControllerBase.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
   final _$loadMoreCharactersAsyncAction =
       AsyncAction('_HomeControllerBase.loadMoreCharacters');
 
@@ -86,7 +101,8 @@ mixin _$HomeController on _HomeControllerBase, Store {
     return '''
 characterModel: ${characterModel},
 page: ${page},
-hasMore: ${hasMore}
+hasMore: ${hasMore},
+isLoading: ${isLoading}
     ''';
   }
 }

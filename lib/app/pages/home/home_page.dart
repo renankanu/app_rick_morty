@@ -46,63 +46,62 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           SizedBox(
             height: 16,
           ),
-          Stack(
-            children: [
-              Container(
-                color: Colors.red,
-                height: MediaQuery.of(context).size.height - 86,
-                child: Expanded(
-                  child: Observer(builder: (_) {
-                    return RefreshIndicator(
-                      onRefresh: () async {
-                        return await controller.reloadCharacters();
-                      },
-                      child: Visibility(
-                        visible: controller.characterModel.length > 0,
-                        child: MediaQuery.removePadding(
-                          context: context,
-                          removeTop: true,
-                          child: ListView.builder(
-                              controller: _scrollController,
-                              itemCount: controller.characterModel.length,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 8),
-                                  child: Card(
-                                    child: Row(
-                                      children: [
-                                        ImageCharacter(
-                                            image: controller
-                                                .characterModel[index].image),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(controller
-                                                .characterModel[index].species),
-                                            Text(
-                                              controller
-                                                  .characterModel[index].name,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+          Expanded(
+            child: Observer(builder: (_) {
+              return RefreshIndicator(
+                onRefresh: () async {
+                  return await controller.reloadCharacters();
+                },
+                child: Visibility(
+                  visible: controller.characterModel.length > 0,
+                  child: MediaQuery.removePadding(
+                    context: context,
+                    removeTop: true,
+                    child: ListView.builder(
+                        controller: _scrollController,
+                        itemCount: controller.characterModel.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Card(
+                              child: Row(
+                                children: [
+                                  ImageCharacter(
+                                      image: controller
+                                          .characterModel[index].image),
+                                  SizedBox(
+                                    width: 20,
                                   ),
-                                );
-                              }),
-                        ),
-                      ),
-                    );
-                  }),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(controller
+                                          .characterModel[index].species),
+                                      Text(
+                                        controller.characterModel[index].name,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
                 ),
-              ),
-            ],
+              );
+            }),
           ),
+          Observer(builder: (_) {
+            return Container(
+              height: controller.isLoading ? 50.0 : 0,
+              color: Colors.transparent,
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }),
         ],
       ),
     );

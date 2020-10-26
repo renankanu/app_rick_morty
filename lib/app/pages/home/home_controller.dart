@@ -24,13 +24,18 @@ abstract class _HomeControllerBase with Store {
   @observable
   bool hasMore = true;
 
+  @observable
+  bool isLoading = false;
+
   @action
   loadMoreCharacters() async {
     page += 1;
     var newCharacters = [];
     if (hasMore) {
+      isLoading = true;
       newCharacters = await characterRepository.getCharacters(page);
       characterModel = [...characterModel, ...newCharacters];
+      isLoading = false;
     }
     if (newCharacters.length == 20) {
       hasMore = true;
